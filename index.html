@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="de"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inno-Kino | Kino Bad Driburg</title>
+<meta name="description" content="In regelmäßigen Abständen zeigt das Kino Bad Driburg gemeinsam mit Sebastian Becker spannende Dokumentarfilme in der Filmreihe Inno-Kino.">
+<link href="files/css2.css" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rot: #c0392b;
+    --rot-dark: #96281b;
+    --dunkel: #1a1a1a;
+    --grau: #444;
+    --hellgrau: #f5f5f5;
+    --mittelgrau: #ddd;
+    --weiss: #fff;
+    --text: #333;
+    --accent: #e8b84b;
+  }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--hellgrau);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* Header entfernt */
+
+  /* ===== HERO BANNER ===== */
+  .hero {
+    background: var(--dunkel);
+    padding: 3.5rem 1.5rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.015) 2px,
+      rgba(255,255,255,0.015) 4px
+    );
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto 1rem;
+    display: block;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--weiss);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.02em;
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  /* ===== INTRO BLOCK ===== */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 2.5rem;
+    align-items: start;
+    margin-bottom: 2.5rem;
+  }
+
+  .intro-grid p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 0.9rem;
+    color: var(--text);
+  }
+
+  .intro-grid a {
+    color: var(--rot);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .intro-grid a:hover { text-decoration: underline; }
+
+  .intro-img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0 var(--rot);
+  }
+
+  /* ===== MEDIENBECKER BOX ===== */
+  .medienbecker-box {
+    background: var(--weiss);
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem 1.75rem;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .medienbecker-box img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 3px solid var(--accent);
+  }
+
+  .medienbecker-box p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .medienbecker-box a {
+    color: var(--rot);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .medienbecker-box a:hover { text-decoration: underline; }
+
+  /* ===== VERANSTALTUNGEN ===== */
+  .veranstaltungen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    color: var(--dunkel);
+    margin-bottom: 0.3rem;
+    border-bottom: 2px solid var(--rot);
+    padding-bottom: 0.4rem;
+    display: inline-block;
+  }
+
+  .veranstaltungen > p {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .veranstaltung-liste {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .veranstaltung-liste li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--mittelgrau);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .veranstaltung-liste li:last-child {
+    border-bottom: none;
+  }
+
+  .v-datum {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--rot);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    padding-top: 2px;
+  }
+
+  .v-inhalt {
+    font-size: 0.97rem;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .v-inhalt strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--dunkel);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .v-inhalt a {
+    color: var(--rot);
+    text-decoration: none;
+    font-size: 0.88rem;
+    display: inline-block;
+    margin-top: 0.3rem;
+    border: 1px solid var(--rot);
+    padding: 1px 8px;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .v-inhalt a:hover {
+    background: var(--rot);
+    color: var(--weiss);
+  }
+
+  /* ===== FILMPLAKATE ===== */
+  .plakate-section {
+    margin-top: 4rem;
+  }
+
+  .plakate-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    color: var(--dunkel);
+    margin-bottom: 0.3rem;
+    border-bottom: 2px solid var(--rot);
+    padding-bottom: 0.4rem;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+
+  .plakate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .plakat-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    transition: transform 0.25s, box-shadow 0.25s;
+    aspect-ratio: 2/3;
+    background: #222;
+  }
+
+  .plakat-item:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.32);
+  }
+
+  .plakat-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s;
+  }
+
+  .plakat-item img.loading {
+    opacity: 0.3;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--dunkel);
+    color: #bbb;
+    padding: 3rem 1.5rem 2rem;
+    margin-top: 5rem;
+  }
+
+  .footer-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .footer-tagline {
+    font-size: 0.95rem;
+    color: #999;
+    margin-bottom: 2.2rem;
+    letter-spacing: 0.01em;
+  }
+
+  .footer-tagline strong {
+    color: var(--weiss);
+    font-weight: 600;
+  }
+
+  .footer-form-title {
+    color: var(--weiss);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+  }
+
+  .kontakt-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .kontakt-form input,
+  .kontakt-form textarea {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+    width: 100%;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .kontakt-form input::placeholder,
+  .kontakt-form textarea::placeholder {
+    color: #666;
+  }
+
+  .kontakt-form input:focus,
+  .kontakt-form textarea:focus {
+    border-color: var(--rot);
+  }
+
+  .kontakt-form textarea {
+    min-height: 130px;
+    resize: vertical;
+  }
+
+  .kontakt-form button {
+    background: var(--rot);
+    color: var(--weiss);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.75rem 2rem;
+    align-self: center;
+    transition: background 0.2s;
+  }
+
+  .kontakt-form button:hover {
+    background: var(--rot-dark);
+  }
+
+  .footer-bottom {
+    max-width: 680px;
+    margin: 2.5rem auto 0;
+    border-top: 1px solid #333;
+    padding-top: 1.2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #555;
+  }
+
+  @media (max-width: 700px) {
+    .intro-grid { grid-template-columns: 1fr; }
+    .intro-grid .intro-img-col { display: none; }
+    .veranstaltung-liste li { grid-template-columns: 1fr; gap: 0.2rem; }
+    .plakate-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<!-- HERO -->
+<div class="hero">
+  <img src="files/inno-kino.jpg" alt="INNO-KINO" class="hero-logo">
+  <h1>Inno-Kino</h1>
+  <p class="hero-sub">mit Medienbecker und Podcaster Sebastian Becker</p>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- INTRO -->
+  <div class="intro-grid">
+    <div>
+      <p>Das Inno-Kino ist eine Filmreihe, die Sebastian Becker ins 
+Leben gerufen hat. Sebastian Becker ist Designthinker und 
+Innovationsdozent mit Gespür. In regelmäßigen Abständen zeigt das Kino 
+Bad Driburg gemeinsam mit ihm spannende Dokumentarfilme zu 
+unterschiedlichen Themen.</p>
+      <p>Sebastian Becker moderiert diese Veranstaltungen und lädt immer
+ wieder interessante Gäste ins Kino ein, wie Filmemacher oder Experten 
+zum jeweiligen Thema.</p>
+      <p>Weitere Infos unter: kontakt(at)innokino.de</p>
+      <p>Zu vielen Filmen hat Sebastian Becker im Vorfeld auch einen Podcast aufgenommen! Alle Inno-Kino-Folgen <a href="https://medienbecker.de/?tag=innokino" target="_blank">hier</a>!</p>
+    </div>
+    <div class="intro-img-col">
+      <img src="files/sebastian-becker.jpg" alt="Medienbecker Sebastian Becker" class="intro-img">
+    </div>
+  </div>
+
+  <!-- MEDIENBECKER BOX -->
+  <div class="medienbecker-box">
+    <a href="https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy9hMDBjZmY4L3BvZGNhc3QvcnNz" target="_blank">
+      <img src="files/medienbeckerei.jpg" alt="Medienbecker Podcast">
+    </a>
+    <p>Übrigens produziert Sebastian Becker die Podcastreihe <strong>„Zukunft im Blick"</strong> zu Themen wie Neue Arbeit, Digitale Bildung, New Learning und weiteren spannenden Dingen.<br>
+    <a href="https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy9hMDBjZmY4L3BvZGNhc3QvcnNz" target="_blank">Schauen Sie einfach mal rein …</a></p>
+  </div>
+
+  <!-- VERANSTALTUNGEN -->
+  <div class="veranstaltungen">
+    <h2>Bisherige Veranstaltungen</h2>
+    <p>Chronologisch, neueste zuerst</p>
+
+    <ul class="veranstaltung-liste">
+      <li>
+        <div class="v-datum">März 2026</div>
+        <div class="v-inhalt">
+          <strong>„Purpose – Ein neuer Kompass für die Welt"</strong>
+          <a href="https://open.spotify.com/episode/2hmGEusT4sjEZbNstJ1YoD" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">Juni 2025</div>
+        <div class="v-inhalt">
+          <strong>„Der Unternehmer, das Dorf und die Künstler"</strong>
+          zu Gast: die Filmemacher Marcelo Busse &amp; Julia Suermondt
+          <a href="https://open.spotify.com/episode/1YKdcJw3KoRaWH48Ru1kEi" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">April 2025</div>
+        <div class="v-inhalt">
+          <strong>„Mission to Marsh"</strong>
+          zu Gast: Filmemacher Alex Kornelsen und Diplom-Biologe Dr. Günther Bockwinkel
+          <a href="https://open.spotify.com/episode/3QwrFi674s0A916IdvECxY" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">Januar 2025</div>
+        <div class="v-inhalt">
+          <strong>„Almar – Der Ruf des Jakobsweges"</strong>
+          zu Gast: Regisseur Sascha Günther, in Kooperation mit der VHS Bad Driburg
+          <a href="https://medienbecker.de/?p=409" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">Januar 2025</div>
+        <div class="v-inhalt">
+          <strong>„Der Ruf – Eine Reise in das Land der Riesen"</strong>
+          zu Gast: Dennis Mattern, in Kooperation mit der VHS Bad Driburg
+          <a href="https://medienbecker.de/?p=413" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">November 2024</div>
+        <div class="v-inhalt">
+          <strong>„Watching you"</strong>
+          zu Gast: Regisseur Klaus Stern, in Kooperation mit der VHS Bad Driburg
+          <a href="https://medienbecker.de/?p=392" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">September 2024</div>
+        <div class="v-inhalt">
+          <strong>„Machland"</strong>
+          Gäste: Filmemacher Lewin Grabo und Patrick Veit, in Kooperation mit der VHS Bad Driburg
+          <a href="https://open.spotify.com/episode/1N7et9CvCcvn6ykjENlf54" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">April 2024</div>
+        <div class="v-inhalt">
+          <strong>„Can Creativity Save the World?"</strong>
+          Gast: Andreas Holzinger
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">November 2023</div>
+        <div class="v-inhalt">
+          <strong>„Krähen"</strong>
+          Gast: Oliver Adler, Vogelexperte und Naturführer aus der Region, in Kooperation mit der VHS Bad Driburg
+          <a href="https://medienbecker.de/?p=255" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">September 2023</div>
+        <div class="v-inhalt">
+          <strong>„Die Linie"</strong>
+          mit Gabriele Harder (Heilpraktikerin für Psychotherapie)
+          <a href="https://medienbecker.de/?p=220" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">Juni 2023</div>
+        <div class="v-inhalt">
+          <strong>„Ernte teilen"</strong>
+          mit Regisseur Philipp Petruch
+          <a href="https://medienbecker.de/?p=212" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">April 2023</div>
+        <div class="v-inhalt">
+          <strong>„Vogelperspektiven"</strong>
+          Vogelexperte Oliver Adler, zertifizierter „Natur- und Landschaftsführer Teutoburger Wald/Eggegebirge"
+          <a href="https://medienbecker.de/?p=179" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">Januar 2023</div>
+        <div class="v-inhalt">
+          <strong>„Der Bauer und der Bobo"</strong>
+          zu Gast per Zoom: Regisseur Kurt Langbein
+          <a href="https://medienbecker.de/?p=176" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">September 2022</div>
+        <div class="v-inhalt">
+          <strong>„Geht doch! Arbeit. Neu. Gestalten."</strong>
+          In dem Podiumsgespräch am Ende des Films haben sich folgende 
+Literaturtipps ergeben: „New Work needs Inner Work", „Reinventing 
+Organisations", „Gewaltfreie Kommunikation", „Wirtschaft hacken von Uwe 
+Lübbermann" und „Die stille Revolution von Bodo Janssen". Sebastian 
+Becker bedankt sich bei allen Beteiligten für die angenehme Diskussion 
+mit den wertvollen Beiträgen. In Kooperation mit der VHS Bad Driburg.
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">Juni 2022</div>
+        <div class="v-inhalt">
+          <strong>„Kein richtig falsches Leben"</strong>
+          zu Gast: Regisseur und Ökodorfbewohner Michael Würfel, in Kooperation mit der VHS Bad Driburg
+          <a href="https://medienbecker.de/?p=145" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">April 2022</div>
+        <div class="v-inhalt">
+          <strong>„Seelenruf – Eine Heilreise mit Pferden"</strong>
+          zu Gast per Skype: Regisseurin Julia Kishori Schieferer, mit 
+anschließender Herzensmeditation, in Kooperation mit der VHS Bad Driburg
+          <a href="https://medienbecker.de/?p=137" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">Januar 2022</div>
+        <div class="v-inhalt">
+          <strong>„Die Welt sind Wir"</strong>
+          Gäste: Andreas und Melike Frickinger per Skype, in Kooperation mit der VHS Bad Driburg
+          <a href="https://anchor.fm/sebastian-becker/episodes/78-Zukunft-im-Blick---die-Filmemacher-Andreas-und-Melike-Frickinger-im-Portrait-e1cta2a/a-a77sr5m" target="_blank">▶ mit Podcast</a>
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">November 2021</div>
+        <div class="v-inhalt">
+          <strong>„Faltenrock"</strong>
+          Gast: Filmemacherin Janina Rasch, in Kooperation mit der VHS Bad Driburg
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">September 2021</div>
+        <div class="v-inhalt">
+          <strong>„Oeconomia"</strong>
+          Gast: Die Protagonistin des Films Samirah Kenawi 
+(Wirtschaftspublizistin) wurde als Interviewpartnerin zugeschaltet, in 
+Kooperation mit der VHS Bad Driburg
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">August 2021</div>
+        <div class="v-inhalt">
+          <strong>„Alles ist eins. Außer der Null."</strong>
+          Gast: Helge Jung vom C3PB, in Kooperation mit der VHS Bad Driburg
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">November 2020</div>
+        <div class="v-inhalt">
+          <strong>„Wildherz"</strong> <em>(ausgefallen)</em><br>
+          Gast: Hauptdarstellerin Simone Hage – Termin war leider im Lock-Down und musste abgesagt werden
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">März 2020</div>
+        <div class="v-inhalt">
+          <strong>„Anders Essen"</strong>
+          mit Vertretern von „Brot für die Welt" und Urban Gardening Projekten vor Ort, in Kooperation mit der VHS Bad Driburg
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">Januar 2020</div>
+        <div class="v-inhalt">
+          <strong>„Der marktgerechte Mensch"</strong>
+          Gäste: Filmemacher Leslie Franke und Herdolor Lorenz, in Kooperation mit der VHS Bad Driburg
+        </div>
+      </li>
+      <li>
+        <div class="v-datum">Dezember 2019</div>
+        <div class="v-inhalt">
+          <strong>„But Beautiful"</strong>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- FILMPLAKATE -->
+  <div class="plakate-section">
+    <h2>Filmplakate</h2>
+    <div class="plakate-grid" id="plakate-grid">
+      <!-- Plakate werden per JS eingefügt -->
+    <div class="plakat-item" title="Mission to Marsh"><img src="files/mission-to-marsh.jpg" alt="Mission to Marsh" loading="lazy"></div><div class="plakat-item" title="Der Unternehmer, das Dorf und die Künstler"><img src="files/der-unternehmer.jpg" alt="Der Unternehmer, das Dorf und die Künstler" loading="lazy"></div><div class="plakat-item" title="Purpose – Ein neuer Kompass für die Welt"><img src="files/purpose.jpg" alt="Purpose – Ein neuer Kompass für die Welt" loading="lazy"></div><div class="plakat-item" title="Almar – Der Ruf des Jakobsweges"><img src="files/almar.jpg" alt="Almar – Der Ruf des Jakobsweges" loading="lazy"></div><div class="plakat-item" title="Der Ruf – Eine Reise in das Land der Riesen"><img src="files/der-ruf.jpg" alt="Der Ruf – Eine Reise in das Land der Riesen" loading="lazy"></div><div class="plakat-item" title="Watching you"><img src="files/watching-you.jpg" alt="Watching you" loading="lazy"></div><div class="plakat-item" title="Machland"><img src="files/machland.jpg" alt="Machland" loading="lazy"></div><div class="plakat-item" title="Can Creativity Save the World?"><img src="files/can-creativity.jpg" alt="Can Creativity Save the World?" loading="lazy"></div><div class="plakat-item" title="Krähen"><img src="files/kraehen.jpg" alt="Krähen" loading="lazy"></div><div class="plakat-item" title="Die Linie"><img src="files/die-linie.jpg" alt="Die Linie" loading="lazy"></div><div class="plakat-item" title="Ernte teilen"><img src="files/ernte-teilen.jpg" alt="Ernte teilen" loading="lazy"></div><div class="plakat-item" title="Vogelperspektiven"><img src="files/vogelperspektiven.jpg" alt="Vogelperspektiven" loading="lazy"></div><div class="plakat-item" title="Der Bauer und der Bobo"><img src="files/bauer-und-bobo.jpg" alt="Der Bauer und der Bobo" loading="lazy"></div><div class="plakat-item" title="Geht doch! Arbeit. Neu. Gestalten."><img src="files/geht-doch.jpg" alt="Geht doch! Arbeit. Neu. Gestalten." loading="lazy"></div><div class="plakat-item" title="Kein richtig falsches Leben"><img src="files/kein-falsches-leben.jpg" alt="Kein richtig falsches Leben" loading="lazy"></div><div class="plakat-item" title="Seelenruf – Eine Heilreise mit Pferden"><img src="files/seelenruf.jpg" alt="Seelenruf – Eine Heilreise mit Pferden" loading="lazy"></div><div class="plakat-item" title="Die Welt sind Wir"><img src="files/die-welt-sind-wir.webp" alt="Die Welt sind Wir" loading="lazy"></div><div class="plakat-item" title="Faltenrock"><img src="files/faltenrock.jpg" alt="Faltenrock" loading="lazy"></div><div class="plakat-item" title="Alles ist eins. Außer der Null."><img src="files/alles-ist-eins.jpg" alt="Alles ist eins. Außer der Null." loading="lazy"></div><div class="plakat-item" title="Oeconomia"><img src="files/oeconomia.jpg" alt="Oeconomia" loading="lazy"></div><div class="plakat-item" title="Der marktgerechte Mensch"><img src="files/marktgerechter-mensch.jpg" alt="Der marktgerechte Mensch" loading="lazy"></div><div class="plakat-item" title="Anders Essen"><img src="files/anders-essen.jpg" alt="Anders Essen" loading="lazy"></div><div class="plakat-item" title="But Beautiful"><img src="files/but-beautiful.jpg" alt="But Beautiful" loading="lazy"></div></div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <p class="footer-tagline">
+      <strong>Innokino Bad Driburg</strong> – eine Filmreihe von Sebastian Becker. Seit 2019
+    </p>
+
+    <p class="footer-form-title">Kontakt</p>
+    <form
+      class="kontakt-form"
+      action="https://formspree.io/f/DEIN_CODE"
+      method="POST"
+    >
+      <input
+        type="text"
+        name="name"
+        placeholder="Ihr Name"
+        autocomplete="name"
+        required
+      >
+      <input
+        type="email"
+        name="email"
+        placeholder="Ihre E-Mail-Adresse"
+        autocomplete="email"
+        required
+      >
+      <textarea
+        name="message"
+        placeholder="Ihre Nachricht"
+        required
+      ></textarea>
+      <button type="submit">Nachricht senden</button>
+    </form>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Inno-Kino Bad Driburg
+  </div>
+</footer>
+
+
+
+</body></html>
